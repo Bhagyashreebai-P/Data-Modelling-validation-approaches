@@ -1,0 +1,18 @@
+mydata <- read.csv("http://www.ats.ucla.edu/stat/data/binary.csv")
+head(mydata)
+# Splitting the data into 80% train and 20% test data 
+##....1.....##
+a=nrow(mydata)*0.8
+train=mydata[1:320,]
+test=mydata[321:400,]
+##....2.....##
+a=nrow(mydata)*0.8 
+train_data=mydata[1:a,]
+test_data=mydata[(a+1):nrow(mydata),]
+#Splitting data thru Caret library 
+library("caret")
+train_Index=createDataPartition(mydata$admit,p=0.8,list=FALSE)
+Train_data=mydata[train_Index,]
+nrow(Train_data)
+Test_data=mydata[-train_Index,]
+nrow(Test_data)
